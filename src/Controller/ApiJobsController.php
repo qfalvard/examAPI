@@ -29,7 +29,7 @@ class ApiJobsController extends AbstractController
     }
 
     /**
-     * @Route("/api/jobs", name="api_jobs", methods={"GET"})
+     * @Route("/jobs", name="jobs", methods={"GET"})
      */
     public function index(JobRepository $jobRepository)
     {
@@ -49,7 +49,7 @@ class ApiJobsController extends AbstractController
     }
 
     /**
-     * @Route("/api/jobs", name="api_jobs_new", methods={"POST"})
+     * @Route("/jobs", name="jobs_new", methods={"POST"})
      */
     public function new(Request $request)
     {
@@ -66,7 +66,7 @@ class ApiJobsController extends AbstractController
     }
 
     /**
-     * @Route("/api/jobs/show/{job}", name="api_jobs_show", methods={"GET"}, requirements={"job"="\d+"})
+     * @Route("/jobs/show/{job}", name="jobs_show", methods={"GET"}, requirements={"job"="\d+"})
      */
     public function show(Job $job, jobRepository $jobRepository)
     {
@@ -84,7 +84,7 @@ class ApiJobsController extends AbstractController
     }
 
     /**
-     * @Route("/api/jobs/edit/{job}", name="edit_jobs_api", methods={"POST"}, requirements={"job"="\d+"})
+     * @Route("/jobs/edit/{job}", name="edit_jobs", methods={"POST"}, requirements={"job"="\d+"})
      */
     public function edit(Job $job, Request $request)
     {
@@ -99,7 +99,7 @@ class ApiJobsController extends AbstractController
     }
 
     /**
-     * @Route("/api/jobs/delete/{job}", name="delete_api", methods={"DELETE"}, requirements={"job"="\d+"})
+     * @Route("/jobs/delete/{job}", name="jobs_delete", methods={"DELETE"}, requirements={"job"="\d+"})
      */
     public function delete(Job $job)
     {

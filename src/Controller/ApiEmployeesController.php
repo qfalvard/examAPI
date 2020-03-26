@@ -32,7 +32,7 @@ class ApiEmployeesController extends AbstractController
     }
 
     /**
-     * @Route("/api/employees", name="api_employees", methods={"GET"})
+     * @Route("/employees", name="employees", methods={"GET"})
      */
     public function index(EmployeeRepository $employeeRepository)
     {
@@ -52,7 +52,7 @@ class ApiEmployeesController extends AbstractController
     }
 
     /**
-     * @Route("/api/employees", name="api_employee_new", methods={"POST"})
+     * @Route("/employees", name="employee_new", methods={"POST"})
      */
     public function new(Request $request)
     {
@@ -60,6 +60,12 @@ class ApiEmployeesController extends AbstractController
 
         $employee->setFirstname($request->get('firstname'));
         $employee->setLastname($request->get('lastname'));
+        $test = $request->get('employementDate');
+        $this->test = new \DateTime('@' . strtotime($test));
+        // dd($this->test);
+
+        $employee->setEmployementDate($this->test);
+        // dd($employee);
 
         $job = $this->getDoctrine()->getRepository(Job::class)->find($request->get('job_id'));
 
@@ -74,7 +80,7 @@ class ApiEmployeesController extends AbstractController
     }
 
     /**
-     * @Route("/api/employees/show/{employee}", name="api_employee_show", methods={"GET"}, requirements={"employee"="\d+"})
+     * @Route("/employees/show/{employee}", name="employee_show", methods={"GET"}, requirements={"employee"="\d+"})
      */
     public function show(Employee $employee, EmployeeRepository $employeeRepository)
     {
@@ -93,7 +99,7 @@ class ApiEmployeesController extends AbstractController
     }
 
     /**
-     * @Route("/api/employees/edit/{employee}", name="edit_employees_api", methods={"POST"}, requirements={"employee"="\d+"})
+     * @Route("/employees/edit/{employee}", name="edit_employees", methods={"POST"}, requirements={"employee"="\d+"})
      */
     public function edit(Employee $employee, Request $request)
     {
@@ -115,7 +121,7 @@ class ApiEmployeesController extends AbstractController
     }
 
     /**
-     * @Route("/api/employees/delete/{employee}", name="delete_api", methods={"DELETE"}, requirements={"employee"="\d+"})
+     * @Route("/employees/delete/{employee}", name="delete_employes", methods={"DELETE"}, requirements={"employee"="\d+"})
      */
     public function delete(Employee $employee)
     {

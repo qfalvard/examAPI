@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
 use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
@@ -38,6 +39,8 @@ class ApiEmployeesController extends AbstractController
         $employees = $employeeRepository->findAll();
 
         $data = $this->serializer->normalize($employees, null, ['groups' => 'all_employees']);
+
+        // dd($data);
         
         $jsonContent = $this->serializer->serialize($data, 'json');
 

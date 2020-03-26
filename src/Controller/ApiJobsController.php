@@ -36,6 +36,7 @@ class ApiJobsController extends AbstractController
 
         $jobs = $jobRepository->findAll();
 
+
         $data = $this->serializer->normalize($jobs, null, ['groups' => 'all_jobs']);
 
         $jsonContent = $this->serializer->serialize($data, 'json');

@@ -90,9 +90,9 @@ class Employee
         return $this;
     }
 
-    public function getEmployementDate(): ?\DateTimeInterface
+    public function getEmployementDate()
     {
-        return $this->employementDate;
+        return $this->employementDate->format('d-m-Y');
     }
 
     public function setEmployementDate(\DateTimeInterface $employementDate): self

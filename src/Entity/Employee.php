@@ -32,6 +32,11 @@ class Employee
      */
     private $job;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $employementDate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Employee
     public function setJob(?Job $job): self
     {
         $this->job = $job;
+
+        return $this;
+    }
+
+    public function getEmployementDate(): ?\DateTimeInterface
+    {
+        return $this->employementDate;
+    }
+
+    public function setEmployementDate(\DateTimeInterface $employementDate): self
+    {
+        $this->employementDate = $employementDate;
 
         return $this;
     }

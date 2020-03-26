@@ -88,8 +88,8 @@ class ApiJobsController extends AbstractController
      */
     public function edit(Job $job, Request $request)
     {
-        if (!empty($request->get('job_id'))) {
-            $job->setTitle($request->get('job_id'));
+        if (!empty($request->get('title'))) {
+            $job->setTitle($request->get('title'));
         }
 
         $em = $this->getDoctrine()->getManager();
@@ -107,6 +107,6 @@ class ApiJobsController extends AbstractController
         $em->remove($job);
         $em->flush();
 
-        return new Response('eh bim! Job supprimé! Très coronavirus tout ça...');
+        return new Response('eh bim! Job supprimé! Voilà qui est très coronavirus tient!!!');
     }
 }

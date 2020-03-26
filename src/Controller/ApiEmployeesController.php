@@ -58,22 +58,24 @@ class ApiEmployeesController extends AbstractController
     {
         $employee = new Employee;
 
+        // new firstname
         $employee->setFirstname($request->get('firstname'));
+
+        // new lastname
         $employee->setLastname($request->get('lastname'));
-        $test = $request->get('employementDate');
-        $this->test = new \DateTime('@' . strtotime($test));
-        // dd($this->test);
 
-        $employee->setEmployementDate($this->test);
-        // dd($employee);
+        // new employementDate
+        $date = $request->get('employementDate');
+        $this->date = new \DateTime('@' . strtotime($date));
+        $employee->setEmployementDate($this->date);
 
+        // new Job
         $job = $this->getDoctrine()->getRepository(Job::class)->find($request->get('job_id'));
-
         $employee->setJob($job);
 
+        // prepare and flush
         $manager = $this->getDoctrine()->getManager();
         $manager->persist($employee);
-
         $manager->flush();
 
         return new Response('Employé ajouté');
@@ -109,8 +111,13 @@ class ApiEmployeesController extends AbstractController
         if (!empty($request->get('lastname'))) {
             $employee->setLastname($request->get('lastname'));
         }
+        if (!empty($request->get('employementDate'))){
+            $date = $request->get('employementDate');
+            $this->date = new \DateTime('@' . strtotime($date));
+            $employee->setEmployementDate($this->date);
+        }
         if (!empty($request->get('job_id'))) {
-            $user = $this->getDoctrine()->getRepository(Job::class)->find($request->get('user_id'));
+            $user = $this->getDoctrine()->getRepository(Job::class)->find($request->get('job_id'));
             $employee->setJob($user);
         }
         
@@ -129,6 +136,6 @@ class ApiEmployeesController extends AbstractController
         $em->remove($employee);
         $em->flush();
 
-        return new Response('eh bim! Employé supprimé! De la BDD...');
+        return new Response('eh bim! Employé supprimé! De la BDD, on est pas des bêtes quand même...');
     }
 }

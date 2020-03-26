@@ -4,7 +4,6 @@ namespace App\DataFixtures;
 
 use App\Entity\Employee;
 use App\Repository\JobRepository;
-use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -28,8 +27,7 @@ class EmployeeFixtures extends Fixture implements DependentFixtureInterface
             $employee->setFirstname($faker->firstName);
             $employee->setLastname($faker->lastname);
             $employee->setEmployementDate(new \DateTime());
-            $employee->setJob($this->jobRepository->find(rand(1, 20)));
-
+            $employee->setJob($this->jobRepository->find(rand(1,5)));
             $manager->persist($employee);
         }
 

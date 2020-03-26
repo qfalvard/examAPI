@@ -28,7 +28,7 @@ class Employee
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Job", inversedBy="employees")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $job;
 
@@ -71,7 +71,7 @@ class Employee
         return $this->job;
     }
 
-    public function setJob(?Job $job): self
+    public function setJob(?Job $job)
     {
         $this->job = $job;
 
